@@ -1,2 +1,2 @@
 # GestaoFesta
-Sistema de Gestão de Convidades de uma Festa
+Sistema de Gestão de Convidados de uma Festa
