@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Lista de Convidados</title>
+		<link rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+			integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+			crossorigin="anonymous" />
+	</head>
+	<body>
+		<h1>Gestão de Festas</h1>
+		
+		<div class="panel panel-default" style="margin 10px">
+			<div class="panel-heading">
+				<h1 class="panel-title">Lista de Convidados</h1>
+			</div>
+			
+			<form class="form-inline" method="post" style="margin: 20px" th:object="${novoConvidado}" th:action="@{/convidados/salvar}">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Nome do Convidado" th:field="*{nome}"/>
+					<input type="text" class="form-control" placeholder="Qtd. Acompanhantes" th:field="*{quantidadeAcompanhantes}"/>
+					<button class="btn btn-primary" type="submit">Salvar</button>
+				</div>
+			</form>
+			
+			<div class="panel-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Convidado</th>
+							<th>Acompanhantes</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr th:each="convidado : ${convidados}">
+							<td th:text="${convidado.id}"></td>
+							<td th:text="${convidado.nome}"></td>
+							<td th:text="${convidado.quantidadeAcompanhantes}"></td>
+							<td>
+								<a class="btn btn-danger" th:href="@{/convidados/deletar(id=${convidado.id})}">Deletar</a>
+							</td>
+						</tr>
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
